@@ -3,240 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reader by(AKROYIT)</title>
+  <title>Reader (by AKROYIT)</title>
   <link rel="icon" type="image/png" href="logo.png">
-  <style>
-    :root {
-      --title-size: 30px;
-    }
-
-    [page-theme="light"] {
-      --body-bg-color: rgba(24, 23, 23, 0.75);
-      --body-element-color: rgb(173, 173, 173);
-      --text-color: rgb(219, 219, 219);
-      --title-color: rgb(108, 73, 182);
-      --button-bg-color: rgb(108, 73, 182);
-    }
-    [page-theme="dark"] {
-      --body-bg-color: rgba(24, 23, 23, 0.75);
-      --body-element-color: rgb(173, 173, 173);
-      --text-color: rgb(219, 219, 219);
-      --title-color: rgb(108, 73, 182);
-      --button-bg-color: rgb(108, 73, 182);
-      --add-list-bg: rgb(59, 59, 59);
-      --add-list-border-col: white;
-    }
-
-    [text-size="14"] {
-      --text-size: 14px;
-    }
-    [text-size="16"] {
-      --text-size: 16px;
-    }
-    [text-size="18"] {
-      --text-size: 18px;
-    }
-    [text-size="20"] {
-      --text-size: 20px;
-    }
-    [text-size="22"] {
-      --text-size: 22px;
-    }
-    [text-size="24"] {
-      --text-size: 24px;
-    }
-    [text-size="26"] {
-      --text-size: 26px;
-    }
-    [text-size="28"] {
-      --text-size: 28px;
-    }
-
-    *{
-      background-color: var(--body-bg-color);
-      color: var(--text-color);
-    }
-
-    body {
-      background-color: var(--body-bg-color);
-      width: calc(1vw*100);
-      height: calc(1vh*100);
-      margin: 0;
-    }
-
-    .display {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 94%;
-      height: 100%;
-    }
-    .header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      height: 95px;
-      margin: 2px 0;
-      padding: 10px 0;
-      background-color: var(--body-bg-color);
-    }
-    .scroll_list {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: center;
-      overflow-y: auto;
-      width: 100%;
-      min-height: calc(1vh*50);
-      margin: 10px 0;
-      border-bottom: solid 2px var(--body-element-color);
-      border-top: solid 2px var(--body-element-color);
-    }
-    .add_list {
-      position: fixed;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-      top: 20%;
-      left: -100%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: calc(1vh*72);
-      background-color: var(--add-list-bg);
-      margin: 10px 0;
-      z-index: 10;
-      border: solid 2px var(--add-list-border-col);
-      border-radius: 14px;
-    }
-    .input_text {
-      font-size: var(--text-size);
-      padding: 14px;
-      width: 74%;
-      aspect-ratio: 1/1.5;
-      resize: none;
-    }
-    .start_btn {
-      width: 36%;
-      aspect-ratio: 2.5/1;
-      border: none;
-      border-radius: 16px;
-      font-size: var(--title-size);
-      font-weight: bold;
-      background-color: var(--button-bg-color);
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    /* Track */
-    ::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px grey; 
-      border-radius: 10px;
-    }
-    
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: rgb(139, 136, 136); 
-      border-radius: 10px;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgb(112, 110, 110); 
-    }
-
-    .back_div, .menu_div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 60px;
-      height: 60px;
-      margin: 0 20px;
-      background-color: var(--button-bg-color);
-      border-radius: 16px;
-      font-weight: bold;
-      border: solid 2px greenyellow; 
-      cursor: pointer;
-    }
-    .logo_div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: calc(1vw*48);
-      border: solid 4px rgb(56, 56, 56);
-      border-radius: 8px;
-      height: 70px;
-      margin: 0 -20px;
-      background-color: red;
-      cursor: pointer;
-      z-index: 14;
-      visibility: hidden;
-    }
-
-    .title_info {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: start;
-      width: 100%;
-      min-height: 90px;
-      height: 100px;
-      font-size: var(--text-size);
-      font-weight: bold;
-      border-bottom: solid 2px var(--body-element-color);
-      border-top: solid 2px var(--body-element-color);
-    }
-
-    .read_list {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-    .text_ {
-      font-size: var(--text-size);
-      width: 94%;
-      height: 100%;
-    }
-
-    .translte_panel {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 28px;
-      color: white;
-      font-weight: bold;
-      position: fixed;
-      z-index: 10;
-      width: calc(1vw*48);
-      height: 70px;
-      border-radius: 8px;
-      border: solid 4px transparent;
-      left: 50%;
-      background-color: rgb(109, 110, 110);
-      transform: translate(-50%, 12px);
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="font-style/font_style.css">
+  <link rel="stylesheet" type="text/css" href="main.css"> 
 </head>
 <body>
-  <div class="translte_panel" id="translate_panel">
-  </div>
+
   <div class="display" id="display">
+
     <div class="header" id="header">
       <div class="back_div" id="back_div" onclick="NewList();">
          New
       </div>
       <div class="logo_div" id="logo_div">
-        Logo
+        <div class="translte_panel" id="translate_panel">
+        </div>
       </div>
-      <div class="menu_div" id="menu_div">
+      <div class="menu_div" id="menu_div" onclick="SettingsS();">
         Menu
       </div>
     </div>
@@ -247,6 +31,7 @@
         </p>
       </div>
     </div>
+
     <div class="add_list" id="add_list">
       <textarea name="?" id="input_text" cols="30" rows="10" 
         class="input_text">
@@ -256,111 +41,83 @@
         Start
       </button>
     </div>
+
   </div>
+
+  <div class="setting_list" id="setting_list">
+    <div class="set_close_div" id="set_close_div">
+      <button class="set_close_btn" id="set_close_btn" onclick="
+        SettingClose();">
+        X
+      </button>
+    </div>
+    <div class="setting_name_">Theme</div>
+    <div class="set_theme_div" id="set_theme_div">
+      <button class="theme_btn" id="theme_dark" onclick="
+        PageThemeChange(`dark`);">
+        Dark
+      </button>
+      <button class="theme_btn" id="theme_light" onclick="
+        PageThemeChange(`light`);">
+        Light
+      </button>
+      <button class="theme_btn" id="theme_read" onclick="
+        PageThemeChange(`read`);">
+        Read
+      </button>
+    </div>
+    <div class="setting_name_">Font style</div>
+    <div class="set_font_style_div" id="set_font_style_div">
+      <button class="font_style_btn" id="font_style_timesnewroman" onclick="
+        FontStyleChange(`timesnewroman`);">
+        Times New R
+      <button class="font_style_btn" id="font_style_roboto" onclick="
+        FontStyleChange(`roboto`);">
+        Roboto
+      </button>
+      <button class="font_style_btn" id="font_style_lora" onclick="
+        FontStyleChange(`lora`);">
+        Lora
+      </button>
+    </div>
+    <div class="setting_name_">Font size</div>
+    <div class="set_font_size_div" id="set_font_size_div">
+      <button class="font_size_btn" id="font_size_14" onclick="
+        FontSizeChange(14);">
+        14
+      </button>
+      <button class="font_size_btn" id="font_size_16" onclick="
+        FontSizeChange(16);">
+        16
+      </button>
+      <button class="font_size_btn" id="font_size_18" onclick="
+        FontSizeChange(18);">
+        18
+      </button>
+      <button class="font_size_btn" id="font_size_20" onclick="
+        FontSizeChange(20);">
+        20
+      </button>
+      <button class="font_size_btn" id="font_size_22" onclick="
+        FontSizeChange(22);">
+        22
+      </button>
+      <button class="font_size_btn" id="font_size_24" onclick="
+        FontSizeChange(24);">
+        24
+      </button>
+      <button class="font_size_btn" id="font_size_26" onclick="
+        FontSizeChange(26);">
+        26
+      </button>
+      <button class="font_size_btn" id="font_size_28" onclick="
+        FontSizeChange(28);">
+        28
+      </button>
+    </div>
+  </div>
+
   <script src="translate.js"></script>
-  <script>
-
-    let id_main_interval;
-    let EnteredText = "";
-    let changed = true;
-    let selected_text = "";
-    let id = [null];
-    let ind_ = 0;
-
-
-    let add_list_position = -100;
-    const AddList = document.getElementById("add_list");
-
-    document.documentElement.setAttribute('page-theme',"dark");
-    document.documentElement.setAttribute('text-size',"22");
-
-    //TextAllPage();
-    NewList();
-
-    function TextAllPage() {
-      document.getElementById("text_p").innerHTML = EnteredText;
-      document.getElementById("scroll_list").scrollTop = 0;
-    }
-
-    function NewList() {
-      MainInterval(false);
-      add_list_position = -100;
-      id_add_list = setInterval(() => {
-        add_list_position += 5;
-        if (add_list_position >= 50) {
-          add_list_position = 50;
-          AddList.style = `left: 50%;`;
-          //StartClicked();
-          clearInterval(id_add_list);
-        } else {
-          AddList.style = `left: ${add_list_position}%;`;
-        }
-      }, 20);
-    }
-
-    function StartClicked() {
-      add_list_position = 50;
-      id_start_list = setInterval(() => {
-        add_list_position -= 5;
-        if (add_list_position <= -100) {
-          EnteredText = document.getElementById("input_text").value;
-          MainInterval(true);
-          TextAllPage();
-          AddList.style = `left: -100%;`;
-          clearInterval(id_start_list);
-        } else {
-          AddList.style = `left: ${add_list_position}%;`;
-        }
-      }, 25);
-    }
- 
-    document.addEventListener('selectionchange', ()=>{
-      changed = false;
-      setTimeout(() => {
-        changed = true;
-      }, 500);
-    });
-    
-    function MainInterval(bool_) {
-      if (bool_ === true) {
-        id_main_interval = setInterval(() => {
-          if (changed) {
-            if (selected_text !== window.getSelection().toString() && 
-                window.getSelection().toString() !== " " &&
-                window.getSelection().toString() !== "" &&
-                window.getSelection().toString().length < 500)  {
-              selected_text = window.getSelection().toString();
-              ind_++;
-              localStorage.setItem(`answer_fi_${ind_}`, "false");
-              TranslateText(ind_, "en", "uz", selected_text);
-              f1(ind_);
-            }
-          }
-        }, 100);
-      } else if (bool_ === false) {
-        clearInterval(id_main_interval);
-      }
-    }
-
-    function f1(num_) {
-      id.push();
-      id[num_] = setInterval(() => {
-        if ( localStorage.getItem(`answer_fi_${num_}`) === "true" ) {
-          data_text_ = localStorage.getItem(`answer_tr_${num_}`);
-          if (data_text_.length < 25) {
-            document.getElementById("translate_panel").innerHTML = data_text_;
-          } else {
-            // pop up list ??? !!!
-            alert(data_text_);
-          }
-          localStorage.removeItem(`answer_tr_${num_}`);
-          localStorage.removeItem(`answer_fi_${num_}`);
-          clearInterval(id[num_]);
-        }
-      }, 100);
-    }
-   
-
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
