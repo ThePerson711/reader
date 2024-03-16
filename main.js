@@ -53,7 +53,7 @@ FontStyleChange(Setting_.font_style);
 PageThemeChange(Setting_.theme);
 
 //TextAllPage();
-//NewList();
+NewList();
 //StartClicked();
 //SettingsS();
 
