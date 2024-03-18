@@ -39,11 +39,55 @@ let Setting_ = {
   font_size: 22,
   font_style: "roboto"
 };
+let TextValue = {
+  input: "",
+  reader: ""
+};
+let LANGUAGE = {
+  from: "en",
+  to: "uz"
+};
+let ListOfWords = [];
 
 
 const AddList = document.getElementById("add_list");
 const ReadList = document.getElementById("read_list");
 const SettingList = document.getElementById("setting_list");
+
+//localStorage.removeItem("Settings_data");
+//localStorage.removeItem("Text_Value_data");
+
+
+if (localStorage.getItem("List_Of_Words") !== null) {
+  (JSON.parse(localStorage.getItem("List_Of_Words"))).forEach(element => {
+    ListOfWords.push(element);
+  });
+}
+
+console.log(ListOfWords)
+
+//if (localStorage.getItem)
+
+if ((localStorage.getItem("Settings_data")) !== null) {
+  Setting_ = {
+    theme: JSON.parse(localStorage.getItem("Settings_data")).theme,
+    font_size: JSON.parse(localStorage.getItem("Settings_data")).font_size,
+    font_style: JSON.parse(localStorage.getItem("Settings_data")).font_style
+  };
+}
+
+if (localStorage.getItem("Text_Value_data") !== null) {
+  if (JSON.parse(localStorage.getItem("Text_Value_data")).reader === "") {
+    NewList();
+  } else {
+    TextValue = {
+      input: JSON.parse(localStorage.getItem("Text_Value_data")).input,
+      reader: JSON.parse(localStorage.getItem("Text_Value_data")).reader
+    }
+    TextAllPage(TextValue.reader);  
+    MainInterval(true);
+  }
+}
 
 document.documentElement.setAttribute('page-theme',"dark");
 document.documentElement.setAttribute('text-size',"22");
@@ -53,15 +97,40 @@ FontStyleChange(Setting_.font_style);
 PageThemeChange(Setting_.theme);
 
 //TextAllPage();
-NewList();
+
 //StartClicked();
 //SettingsS();
+
+function  SetSetingToLS() {
+  (localStorage.setItem("Settings_data", JSON.stringify({
+    theme: Setting_.theme,
+    font_size: Setting_.font_size,
+    font_style: Setting_.font_style
+  })))
+}
+
+function SetTextValueToLC() {
+  localStorage.setItem("Text_Value_data", JSON.stringify({
+    input: TextValue.input,
+    reader: TextValue.reader
+  }))
+}
+
+function SetWordToList(new_word_, uz_new_word_) {
+  ListOfWords.push({
+    from: new_word_,
+    to: uz_new_word_
+  });
+  localStorage.setItem("List_Of_Words", JSON.stringify(ListOfWords));
+}
+
 
 function FontSizeChange(font_size_) {
   document.getElementById(`font_size_${Setting_.font_size}`).classList.remove("selected_setting");
   document.getElementById(`font_size_${font_size_}`).classList.add("selected_setting");  
   document.documentElement.setAttribute('text-size', `${font_size_}`);
   Setting_.font_size = font_size_;
+  SetSetingToLS();
 }
 
 function FontStyleChange(font_style_) {
@@ -69,6 +138,7 @@ function FontStyleChange(font_style_) {
   document.getElementById(`font_style_${font_style_}`).classList.add("selected_setting");  
   document.documentElement.setAttribute('text-style', `${font_style_}`);
   Setting_.font_style = font_style_;
+  SetSetingToLS();
 }
 
 function PageThemeChange(page_theme_) {
@@ -76,6 +146,7 @@ function PageThemeChange(page_theme_) {
   document.getElementById(`theme_${page_theme_}`).classList.add("selected_setting");  
   document.documentElement.setAttribute('page-theme', `${page_theme_}`);
   Setting_.theme = page_theme_;
+  SetSetingToLS();
 }
 
 //document.getElementById("input_text").value = shablon;
@@ -90,17 +161,18 @@ function FixText() {
       pre_LP = i+1;
     }
   }
-  console.table("t>", lines)
 }
 
-function TextAllPage() {
+function TextAllPage(reader_text_) {
   //FixText();
  // ReadList.innerHTML = "";
   //lines.forEach(element => {
   //  ReadList.innerHTML += `<p>${element}</p>`;
   //});
-  document.getElementById("text_p").innerHTML = EnteredText;
+  document.getElementById("text_p").innerHTML = reader_text_;
   document.getElementById("scroll_list").scrollTop = 0;
+  TextValue.reader = reader_text_;
+  SetTextValueToLC();
 }
 
 function SettingsS() {
@@ -159,7 +231,7 @@ function StartClicked() {
     if (add_list_position <= -100) {
       EnteredText = document.getElementById("input_text").value;
       MainInterval(true);
-      TextAllPage();
+      TextAllPage(EnteredText);
       AddList.style = `left: -100%;`;
       clearInterval(id_start_list);
     } else {
@@ -186,7 +258,7 @@ function MainInterval(bool_) {
           selected_text = window.getSelection().toString();
           ind_++;
           localStorage.setItem(`answer_fi_${ind_}`, "false");
-          TranslateText(ind_, "en", "uz", selected_text);
+          TranslateText(ind_, LANGUAGE.from, LANGUAGE.to, selected_text);
           f1(ind_);
         }
       }
@@ -201,6 +273,7 @@ function f1(num_) {
   id[num_] = setInterval(() => {
     if ( localStorage.getItem(`answer_fi_${num_}`) === "true" ) {
       data_text_ = localStorage.getItem(`answer_tr_${num_}`);
+      SetWordToList(selected_text, data_text_);
       if (data_text_.length < 25) {
         document.getElementById("translate_panel").innerHTML = data_text_;
       } else {
