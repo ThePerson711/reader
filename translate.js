@@ -21,6 +21,9 @@ function TranslateText(num_, language_from_, langugage_to_, context_) {
     let apiUrl = `https://api.mymemory.translated.net/get?q=${context_}&langpair=${language_from_}|${langugage_to_}`;
     fetch(apiUrl).then(res => res.json()).then(data => {
         localStorage.setItem(`answer_tr_${num_}`, data.responseData.translatedText);
+
+        console.log(language_from_, ":",data.responseData.translatedText)
+
         localStorage.setItem(`answer_fi_${num_}`, "true");
     })
 }

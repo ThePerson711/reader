@@ -34,7 +34,8 @@
 
     <div class="add_list" id="add_list">
       <textarea name="?" id="input_text" cols="30" rows="10" 
-        class="input_text"></textarea>
+        class="input_text">
+      </textarea>
       <button class="start_btn" id="start_btn" onclick="
         StartClicked();">
         Start
@@ -48,6 +49,21 @@
       <button class="set_close_btn" id="set_close_btn" onclick="
         SettingClose();">
         X
+      </button>
+    </div>
+    <div class="setting_name_">Language</div>
+    <div class="set_theme_div" id="set_lang_div">
+      <button class="theme_btn" id="lang_english" onclick="
+        SettingLangChange(`english`);">
+        English
+      </button>
+      <button class="theme_btn" id="lang_korean" onclick="
+        SettingLangChange(`korean`);">
+        Korean
+      </button>
+      <button class="theme_btn" id="lang_russian" onclick="
+        SettingLangChange(`russian`);">
+        Russian
       </button>
     </div>
     <div class="setting_name_">Theme</div>

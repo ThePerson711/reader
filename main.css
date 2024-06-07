@@ -202,14 +202,16 @@
         background-color: var(--setting-div-bg-color);
       }
   
-  .set_theme_div {
+  .set_theme_div,
+  .set_lang_div {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     height: 10%;
   }
-      .theme_btn {
+      .theme_btn,
+      .lang_ch_btn {
         font-size: 12px;
         width: 20%;
         aspect-ratio: 2/1;

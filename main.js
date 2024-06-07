@@ -37,7 +37,8 @@ let add_list_position = -100;
 let Setting_ = {
   theme: "dark",
   font_size: 22,
-  font_style: "roboto"
+  font_style: "roboto",
+  lang: "english"
 };
 let TextValue = {
   input: "",
@@ -66,13 +67,15 @@ if (localStorage.getItem("List_Of_Words") !== null) {
 
 console.log(ListOfWords)
 
+
 //if (localStorage.getItem)
 
 if ((localStorage.getItem("Settings_data")) !== null) {
   Setting_ = {
     theme: JSON.parse(localStorage.getItem("Settings_data")).theme,
     font_size: JSON.parse(localStorage.getItem("Settings_data")).font_size,
-    font_style: JSON.parse(localStorage.getItem("Settings_data")).font_style
+    font_style: JSON.parse(localStorage.getItem("Settings_data")).font_style,
+    lang: JSON.parse(localStorage.getItem("Settings_data")).lang
   };
 }
 
@@ -95,6 +98,7 @@ document.documentElement.setAttribute('text-size',"22");
 FontSizeChange(Setting_.font_size);
 FontStyleChange(Setting_.font_style);
 PageThemeChange(Setting_.theme);
+SettingLangChange(Setting_.lang);
 
 //TextAllPage();
 
@@ -105,7 +109,8 @@ function  SetSetingToLS() {
   (localStorage.setItem("Settings_data", JSON.stringify({
     theme: Setting_.theme,
     font_size: Setting_.font_size,
-    font_style: Setting_.font_style
+    font_style: Setting_.font_style,
+    lang: Setting_.lang
   })))
 }
 
@@ -146,6 +151,20 @@ function PageThemeChange(page_theme_) {
   document.getElementById(`theme_${page_theme_}`).classList.add("selected_setting");  
   document.documentElement.setAttribute('page-theme', `${page_theme_}`);
   Setting_.theme = page_theme_;
+  SetSetingToLS();
+}
+
+function SettingLangChange(lang_change_) {
+  document.getElementById(`lang_${Setting_.lang}`).classList.remove("selected_setting");
+  document.getElementById(`lang_${lang_change_}`).classList.add("selected_setting");  
+  Setting_.lang = lang_change_;
+  if (lang_change_ === "english") {
+    LANGUAGE.from = "en";
+  } else if (lang_change_ === "korean") {
+    LANGUAGE.from = "ko";
+  } else if (lang_change_ === "russian") {
+    LANGUAGE.from = "ru";
+  }
   SetSetingToLS();
 }
 
@@ -273,7 +292,8 @@ function f1(num_) {
   id[num_] = setInterval(() => {
     if ( localStorage.getItem(`answer_fi_${num_}`) === "true" ) {
       data_text_ = localStorage.getItem(`answer_tr_${num_}`);
-      SetWordToList(selected_text, data_text_);
+      // Don`t need that now !
+      //SetWordToList(selected_text, data_text_);
       if (data_text_.length < 25) {
         document.getElementById("translate_panel").innerHTML = data_text_;
       } else {
@@ -286,5 +306,4 @@ function f1(num_) {
     }
   }, 100);
 }
-
 
