@@ -105,6 +105,8 @@ SettingLangChange(Setting_.lang);
 //StartClicked();
 //SettingsS();
 
+SettingsS();
+
 function  SetSetingToLS() {
   (localStorage.setItem("Settings_data", JSON.stringify({
     theme: Setting_.theme,
@@ -307,3 +309,14 @@ function f1(num_) {
   }, 100);
 }
 
+function Akroyit() {
+  const channelLink = `https://t.me/AkbarShoh_711`;
+  // Open the channel link in a new tab/window
+  window.open(channelLink, '_blank');
+}
+
+function AkroyitChanel() {
+  const channelLink = `https://t.me/akroyit;`;
+  // Open the channel link in a new tab/window
+  window.open(channelLink, '_blank');
+}
