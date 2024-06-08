@@ -284,7 +284,7 @@ function Akroyit() {
 }
 
 function AkroyitChanel() {
-  const channelLink = `https://t.me/akroyit;`;
+  const channelLink = `https://t.me/akroyit`;
   // Open the channel link in a new tab/window
   window.open(channelLink, '_blank');
 }

@@ -399,7 +399,7 @@ body {
   transform: rotate(90deg);
   color: var(--text-color);
   width: calc(1vw*8);
-  aspect-ratio: 1/1;
+  height: calc(1vw*8);
   font-size: 28px;
   border-radius: calc(1vw*1);
   border: solid 1px var(--button-border-color);
