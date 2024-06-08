@@ -1,23 +1,4 @@
-
-let shablon = `Do you ever get that feeling of not being able to tell when you’re full? Or 
-eating out of pure boredom? Fasting can help solve those problems. By 
-structuring your day around everything apart from eating, your body 
-eventually gets accustomed to not feeling hungry all the time. During the 
-Holy month of Ramadan, many Muslims who are partaking in the obligatory 
-fasts will experience many cravings during the fasting day, only to find that 
-they are not able to consume much upon opening their fast. This is due to 
-the fact that the less you put into your stomach over a length of time, the 
-more the stomach shrinks - leading you to feel full after just a small amount 
-of food.
-As our bodies get accustomed to how often we eat, a few days of 
-intermittent fasting can drastically decrease our appetite in the long run. 
-Upon breaking the fast, the human body cannot consume a large amount 
-comfortably as the stomach shrinks – leading you to feel satisfied after a 
-smaller meal than usual. This process also increases the production of the 
-thyroid hormone in the body, boosting your metabolism in the process.`;
-
-
-
+let shablon = ``;
 let id_main_interval;
 let EnteredText = "";
 let changed = true;
@@ -50,23 +31,15 @@ let LANGUAGE = {
 };
 let ListOfWords = [];
 
-
 const AddList = document.getElementById("add_list");
 const ReadList = document.getElementById("read_list");
 const SettingList = document.getElementById("setting_list");
-
-//localStorage.removeItem("Settings_data");
-//localStorage.removeItem("Text_Value_data");
-
 
 if (localStorage.getItem("List_Of_Words") !== null) {
   (JSON.parse(localStorage.getItem("List_Of_Words"))).forEach(element => {
     ListOfWords.push(element);
   });
 }
-
-console.log(ListOfWords)
-
 
 //if (localStorage.getItem)
 
@@ -102,10 +75,10 @@ SettingLangChange(Setting_.lang);
 
 //TextAllPage();
 
-//StartClicked();
-//SettingsS();
 
-SettingsS();
+
+
+
 
 function  SetSetingToLS() {
   (localStorage.setItem("Settings_data", JSON.stringify({
@@ -261,12 +234,7 @@ function StartClicked() {
   }, (Interval.input_go / 30));
 }
 
-document.addEventListener('selectionchange', ()=>{
-  changed = false;
-  setTimeout(() => {
-    changed = true;
-  }, 500);
-});
+
 
 function MainInterval(bool_) {
   if (bool_ === true) {
@@ -319,4 +287,19 @@ function AkroyitChanel() {
   const channelLink = `https://t.me/akroyit;`;
   // Open the channel link in a new tab/window
   window.open(channelLink, '_blank');
+}
+
+function ResetData() {
+  if (window.confirm('Do you want clear all data?'))
+    {
+        // They clicked Yes
+        localStorage.removeItem("Settings_data");
+        localStorage.removeItem("Text_Value_data");
+        localStorage.removeItem("List_Of_Words");
+        location.reload();
+    }
+    else
+    {
+        // They clicked no
+    }
 }
