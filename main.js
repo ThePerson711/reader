@@ -216,14 +216,20 @@ function NewList() {
   }, (Interval.input_come / 30) );
 }
 
-function StartClicked() {
+function StartClicked(param) {
   //if (document.getElementById("input_text").value.length < 10) {
   //}
   add_list_position = 50;
   id_start_list = setInterval(() => {
     add_list_position -= 5;
     if (add_list_position <= -100) {
-      EnteredText = document.getElementById("input_text").value;
+      if (param === "new") {
+        EnteredText = document.getElementById("input_text").value;
+      } else {
+        EnteredText = document.getElementById("text_p").innerHTML;
+        EnteredText += " ";
+        EnteredText += document.getElementById("input_text").value;
+      }
       MainInterval(true);
       TextAllPage(EnteredText);
       AddList.style = `left: -100%;`;
@@ -303,3 +309,5 @@ function ResetData() {
         // They clicked no
     }
 }
+
+window.resizeTo(750,750)

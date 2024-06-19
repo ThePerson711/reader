@@ -411,3 +411,12 @@ body {
 button {
   cursor: pointer;
 }
+
+.btn_p {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: calc(1vw*50);
+  background-color: transparent;
+  margin: calc(1vh*1);
+}

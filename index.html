@@ -36,10 +36,16 @@
       <textarea name="?" id="input_text" cols="30" rows="10" 
         class="input_text">
       </textarea>
-      <button class="start_btn" id="start_btn" onclick="
-        StartClicked();">
-        Start
-      </button>
+      <div class="btn_p">
+        <button class="start_btn" id="start_new_btn" onclick="
+          StartClicked(`new`);">
+          New
+        </button>
+        <button class="start_btn" id="start_btn" onclick="
+          StartClicked(`add`);">
+          Add
+        </button>
+      </div>
     </div>
 
   </div>
