@@ -308,7 +308,6 @@ body {
   width: calc(1vw*48);
   border: none;
   height: 70px;
-  margin: 0 -20px;
   background-color: transparent;
   cursor: pointer;
   z-index: 14;
@@ -419,4 +418,37 @@ button {
   width: calc(1vw*50);
   background-color: transparent;
   margin: calc(1vh*1);
+}
+
+.sound-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(1vw*8);
+  height: calc(1vw*8);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: solid 2px var(--button-border-color);
+  margin-right: calc(1vw);
+  background-color: gray;
+  font-size: 32px;
+}
+.img-sound {
+  width: 100%;
+  background-color: transparent;
+}
+.from-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(calc(1vh*(-3)));
+  position: fixed;
+  z-index: 18;
+  background-color: var(--button-bg-color);
+  font-weight: bold;
+  height: calc(1vh*6);
+  padding: 0 calc(1vw*2);
+  border-radius: calc(1vw);
+  border: solid 2px var(--button-border-color);
+  font-size: 20px;
 }

@@ -276,6 +276,9 @@ function f1(num_) {
         // pop up list ??? !!!
         alert(data_text_);
       }
+      document.getElementById("foregin").innerHTML = selected_text;
+      // ??? TextToSpeech(selected_text, "kr")
+
       localStorage.removeItem(`answer_tr_${num_}`);
       localStorage.removeItem(`answer_fi_${num_}`);
       clearInterval(id[num_]);
@@ -308,6 +311,43 @@ function ResetData() {
     {
         // They clicked no
     }
+}
+
+//TextToSpeech("hello", "en")
+
+function TextToSpeech(text_, lang_) {
+  if ('speechSynthesis' in window) {
+      // Create a new SpeechSynthesisUtterance object
+      var utterance = new SpeechSynthesisUtterance();
+      // Set the text to be spoken
+      utterance.text = text_;
+      // Specify Korean as the language
+      if (lang_ === "kr") {
+      utterance.lang = 'ko-KR';
+      } else if (lang_ === "uz") {
+      utterance.lang = 'uz-UZ'; // Set language to Uzbek
+      } else if (lang_ === "en") {
+      utterance.lang = 'en-US'; // Set language to English
+      } else if (lang_ === "ru") {
+      utterance.lang = 'ru-RU'; // Set language to Russian
+      }
+      // Speak the text
+      speechSynthesis.speak(utterance);
+  } else {
+      // If speech synthesis is not supported, alert the user
+      alert('Sorry, your browser does not support speech synthesis.');
+  }
+}
+
+function SoundT() {
+  if (LANGUAGE.from === "en") {
+    langg = "en";
+  } else if (LANGUAGE.from === "ko") {
+    langg = "kr";
+  } else if (LANGUAGE.from === "ru") {
+    langg = "ru";
+  }
+  TextToSpeech(selected_text, langg)
 }
 
 window.resizeTo(750,750)
